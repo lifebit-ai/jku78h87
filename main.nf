@@ -26,7 +26,7 @@ process remove_and_anootate {
     
     bcftools view -S ${sample_list} \
      -Oz \
-     --threads ${params.threads} \
+     --threads ${task.cpus} \
      -o ${outfile} \
      ${aggregate_file}
     """
