@@ -5,7 +5,7 @@ Channel
     .set{ aggregate_files_channel }
     
 Channel
-    fromPath(params.final_sample_list)
+    .fromPath(params.final_sample_list)
     .set{ sample_list_channel }
 
 process remove_and_anootate {
