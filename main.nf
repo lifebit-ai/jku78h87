@@ -23,5 +23,6 @@ process remove_and_anootate {
     script:
     """
     cp ${aggregate_file} dummy_output.txt
+    ls -lho
     """
 }
