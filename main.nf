@@ -9,7 +9,7 @@ Channel
     .set{ sample_list_channel }
 
 process remove_and_anootate {
-    cpus 32
+    cpus 2
     memory "10 GB"
     
     publishDir "./results", mode: "copy"
@@ -18,16 +18,10 @@ process remove_and_anootate {
         file(aggregate_file) from aggregate_files_channel
         file(sample_list) from sample_list_channel
     output:
-        file("${outfile}")
+        file("dummy_output.txt")
     
     script:
-    outfile=aggregate_file.toString().replaceAll(/bcf/, "vcf.gz")
     """
-    
-    bcftools view -S ${sample_list} \
-     -Oz \
-     --threads ${task.cpus} \
-     -o ${outfile} \
-     ${aggregate_file}
+    cp ${aggregate_file} dummy_output.txt
     """
 }
